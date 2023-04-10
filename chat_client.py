@@ -20,15 +20,19 @@ nombre = input("Ingresa tu nombre de usuario: ")
 cliente.sendall(nombre.encode('utf-8'))
 
 # Define la función de manejo de mensajes
-def manejar_mensaje(mensaje, remitente):
+def manejar_mensaje(mensaje, emisor):
     """
     Agrega un mensaje a la ventana de chat
     """
     chat.config(state=tk.NORMAL)
-    if remitente == nombre:
-        chat.insert(tk.END, f"{remitente}: {mensaje}\n", 'derecha')
+    if emisor == nombre:
+        # Yo soy el emisor, así que alineo el texto a la derecha
+        chat.tag_config('yo', justify='right')
+        chat.insert(tk.END, mensaje + '\n', 'yo')
     else:
-        chat.insert(tk.END, f"{remitente}: {mensaje}\n", 'izquierda')
+        # El otro es el emisor, así que alineo el texto a la izquierda
+        chat.tag_config('otro', justify='left')
+        chat.insert(tk.END, f"{emisor}: {mensaje}\n",'otro')
     chat.see(tk.END)
     chat.config(state=tk.DISABLED)
 
@@ -49,24 +53,33 @@ def recibir_mensajes():
     """
     while True:
         mensaje = cliente.recv(1024).decode('utf-8')
-        if mensaje == '/quit':
-            break
-        remitente, mensaje = mensaje.split(':', 1)
-        manejar_mensaje(mensaje, remitente)
+        partes = mensaje.split(':')
+        emisor = partes[0]
+        mensaje = ':'.join(partes[1:])
+        manejar_mensaje(mensaje, emisor)
 
 # Crea la ventana de chat
 ventana = tk.Tk()
 ventana.title("Chat")
 ventana.geometry("600x900")
 
-# Crea un área de texto para mostrar los mensajes
-chat = tk.Text(ventana, state=tk.DISABLED, bg="#f5f5f5", font=("Arial", 12))
-chat.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+# Crea un frame para el área de texto y la scrollbar
+chat_frame = tk.Frame(ventana)
+chat_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+
+# Crea un área de texto para mostrar los mensajes, espacio a la derecha
+chat = tk.Text(chat_frame, font=("Arial", 12), bd=0, bg="#f5f5f5", height="8", width="50", padx=5, pady=5)
+chat.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
 # Crea un scrollbar para el área de texto
-scrollbar = ttk.Scrollbar(chat, orient=tk.VERTICAL, command=chat.yview)
-scrollbar.pack(side=tk.RIGHT, fill=tk.Y, padx=10, pady=10)
+scrollbar = ttk.Scrollbar(chat_frame, orient=tk.VERTICAL, command=chat.yview)
+scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+
+
 chat['yscrollcommand'] = scrollbar.set
+
+chat.tag_configure('yo', foreground='black', background='#aae5ad')
+chat.tag_configure('otro', foreground='black', background='#f0f0f0')
 
 # Crea una entrada de texto para que el usuario escriba sus mensajes
 frame_entrada = tk.Frame(ventana)
