@@ -57,15 +57,16 @@ def recibir_mensajes():
 # Crea la ventana de chat
 ventana = tk.Tk()
 ventana.title("Chat")
-ventana.geometry("400x500")
+ventana.geometry("600x900")
 
 # Crea un área de texto para mostrar los mensajes
 chat = tk.Text(ventana, state=tk.DISABLED, bg="#f5f5f5", font=("Arial", 12))
 chat.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
 
 # Crea un scrollbar para el área de texto
-chat_scrollbar = ttk.Scrollbar(chat)
-chat_scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+scrollbar = ttk.Scrollbar(chat, orient=tk.VERTICAL, command=chat.yview)
+scrollbar.pack(side=tk.RIGHT, fill=tk.Y, padx=10, pady=10)
+chat['yscrollcommand'] = scrollbar.set
 
 # Crea una entrada de texto para que el usuario escriba sus mensajes
 frame_entrada = tk.Frame(ventana)
