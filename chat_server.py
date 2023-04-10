@@ -41,7 +41,6 @@ def manejar_cliente(cliente, direccion):
             with clientes_lock:
                 del clientes[cliente]
             print(f"{nombre} se ha desconectado")
-            cliente.close()
             break
         manejar_mensaje(cliente, mensaje)
 

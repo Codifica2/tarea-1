@@ -1,4 +1,5 @@
 import socket
+import os
 import threading
 import tkinter as tk
 from tkinter import ttk
@@ -6,6 +7,7 @@ from tkinter import ttk
 # Define la dirección IP y el puerto del servidor
 HOST = '127.0.0.1'
 PORT = 5000
+cliente_cerrado = False
 
 # Crea un socket TCP/IP
 cliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -18,6 +20,19 @@ nombre = input("Ingresa tu nombre de usuario: ")
 
 # Envía el nombre de usuario al servidor
 cliente.sendall(nombre.encode('utf-8'))
+
+def on_closing():
+    global cliente_cerrado
+    
+    # Detener el socket antes de cerrar la ventana
+    cliente.sendall('/quit'.encode('utf-8'))
+    cliente.close()
+    
+    # Establecer la bandera de cierre
+    cliente_cerrado = True
+    
+    # Cerrar la ventana y salir del programa
+    ventana.destroy()
 
 # Define la función de manejo de mensajes
 def manejar_mensaje(mensaje, emisor):
@@ -42,6 +57,8 @@ def manejar_entrada(event):
     Maneja la entrada de texto del usuario y la envía al servidor
     """
     mensaje = entrada.get()
+    if mensaje == '/quit':
+        on_closing()
     cliente.sendall(mensaje.encode('utf-8'))
     manejar_mensaje(mensaje, nombre)
     entrada.delete(0, tk.END)
@@ -100,9 +117,14 @@ boton_enviar.pack(side=tk.RIGHT)
 hilo_mensajes = threading.Thread(target=recibir_mensajes)
 hilo_mensajes.start()
 
+# Protocolo para cerrar la ventana
+ventana.protocol("WM_DELETE_WINDOW", on_closing)
 # Inicia la ventana principal
 ventana.mainloop()
 
-# Cierra la conexión con el servidor
-cliente.sendall('/quit'.encode('utf-8'))
-cliente.close()
+# Espera hasta que el cliente sea cerrado
+while not cliente_cerrado:
+    pass
+print("Cliente cerrado")
+# Forzar detención del programa
+os._exit(0)
