@@ -31,11 +31,16 @@ def manejar_mensaje(cliente, mensaje):
     # Aquí se podría agregar el algoritmo de cifrado
     mensaje_cifrado = mensaje.encode('utf-8') # Convertir el mensaje a bytes
     with clientes_lock:
-        for c in clientes:
-            # Enviar el mensaje a todos los clientes excepto el remitente
-            if c != cliente:
-                c.sendall(nombre.encode('utf-8') + b": " + mensaje_cifrado)
-        log_message("envió mensaje", logging.INFO, nombre)
+        try:
+            for c in clientes:
+                # Enviar el mensaje a todos los clientes excepto el remitente
+                if c != cliente:
+                    c.sendall(nombre.encode('utf-8') + b": " + mensaje_cifrado)
+            log_message("envió mensaje", logging.INFO, nombre)
+        except ConnectionResetError:
+            log_message("se ha desconectado", logging.WARNING, nombre)
+            del clientes[cliente]
+        
 
 # Define la función para manejar la conexión de un nuevo cliente
 def manejar_cliente(cliente, direccion):
