@@ -21,9 +21,6 @@ def log_message(msg, level, nombre):
     logging.basicConfig(filename='server.log', level=logging.INFO, filemode='a')
     logging.log(level, f"{now} {nombre} {msg}")
 
-    # Muestra en consola el log
-    print(f"{now} {nombre} {msg}")
-
 # Define la función de manejo de mensajes
 def manejar_mensaje(cliente, mensaje):
     """
