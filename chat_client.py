@@ -64,10 +64,14 @@ def manejar_entrada(event):
     mensaje = entrada.get()
     if mensaje == '/quit':
         on_closing()
-    mensaje_codificado=codificar(mensaje,tabla_conversion)
-    cliente.sendall(mensaje_codificado)
-    manejar_mensaje(mensaje, nombre)
-    entrada.delete(0, tk.END)
+    # Si el mensaje no está vacío, lo envía al servidor
+    if mensaje.strip():
+        mensaje_codificado=codificar(mensaje,tabla_conversion)
+        cliente.sendall(mensaje_codificado)
+        manejar_mensaje(mensaje, nombre)
+        entrada.delete(0, tk.END)
+    else:
+        entrada.delete(0, tk.END)
 
 # Define la función para recibir mensajes del servidor
 def recibir_mensajes():
