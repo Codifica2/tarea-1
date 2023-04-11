@@ -1,5 +1,7 @@
 import socket
 import threading
+import logging
+from datetime import datetime
 
 # Define la dirección IP y el puerto del servidor
 HOST = '127.0.0.1'
@@ -8,6 +10,15 @@ PORT = 5000
 # Define una lista de clientes conectados y sus nombres de usuario
 clientes = {}
 clientes_lock = threading.Lock()
+
+# Define la función para registrar los mensajes del servidor
+def log_message(msg, level, nombre):
+    now = datetime.now().strftime("%H:%M:%S")
+    logging.basicConfig(filename='server.log', level=logging.INFO)
+    logging.log(level, f"{now} {nombre} {msg}")
+
+    # Muestra en consola el log
+    print(f"{now} {nombre} {msg}")
 
 # Define la función de manejo de mensajes
 def manejar_mensaje(cliente, mensaje):
@@ -24,6 +35,7 @@ def manejar_mensaje(cliente, mensaje):
             # Enviar el mensaje a todos los clientes excepto el remitente
             if c != cliente:
                 c.sendall(nombre.encode('utf-8') + b": " + mensaje_cifrado)
+        log_message("envió mensaje", logging.INFO, nombre)
 
 # Define la función para manejar la conexión de un nuevo cliente
 def manejar_cliente(cliente, direccion):
