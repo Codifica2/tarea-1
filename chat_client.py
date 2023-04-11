@@ -3,6 +3,10 @@ import os
 import threading
 import tkinter as tk
 from tkinter import ttk
+from coding import codificar,decodificar,crear_tabla_conversion
+
+#se crea la tabla de codificacion
+tabla_conversion=crear_tabla_conversion(32,127,2)
 
 # Define la dirección IP y el puerto del servidor
 HOST = '127.0.0.1'
@@ -19,13 +23,14 @@ cliente.connect((HOST, PORT))
 nombre = input("Ingresa tu nombre de usuario: ")
 
 # Envía el nombre de usuario al servidor
-cliente.sendall(nombre.encode('utf-8'))
+nombre_codificado=codificar(nombre, tabla_conversion)
+cliente.sendall(nombre_codificado)
 
 def on_closing():
     global cliente_cerrado
     
     # Detener el socket antes de cerrar la ventana
-    cliente.sendall('/quit'.encode('utf-8'))
+    cliente.sendall(codificar("/quit",tabla_conversion))
     cliente.close()
     
     # Establecer la bandera de cierre
@@ -59,7 +64,8 @@ def manejar_entrada(event):
     mensaje = entrada.get()
     if mensaje == '/quit':
         on_closing()
-    cliente.sendall(mensaje.encode('utf-8'))
+    mensaje_codificado=codificar(mensaje,tabla_conversion)
+    cliente.sendall(mensaje_codificado)
     manejar_mensaje(mensaje, nombre)
     entrada.delete(0, tk.END)
 
@@ -69,7 +75,7 @@ def recibir_mensajes():
     Recibe mensajes del servidor y los maneja
     """
     while True:
-        mensaje = cliente.recv(1024).decode('utf-8')
+        mensaje =decodificar(cliente.recv(1024),tabla_conversion)
         partes = mensaje.split(':')
         emisor = partes[0]
         mensaje = ':'.join(partes[1:])

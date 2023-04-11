@@ -2,6 +2,10 @@ import socket
 import threading
 import logging
 from datetime import datetime
+from coding import codificar,decodificar,crear_tabla_conversion
+
+#se crea la tabla de codificacion
+tabla_conversion=crear_tabla_conversion(32,127,2)
 
 # Define la dirección IP y el puerto del servidor
 HOST = '127.0.0.1'
@@ -14,7 +18,7 @@ clientes_lock = threading.Lock()
 # Define la función para registrar los mensajes del servidor
 def log_message(msg, level, nombre):
     now = datetime.now().strftime("%H:%M:%S")
-    logging.basicConfig(filename='server.log', level=logging.INFO)
+    logging.basicConfig(filename='server.log', level=logging.INFO, filemode='a')
     logging.log(level, f"{now} {nombre} {msg}")
 
     # Muestra en consola el log
@@ -29,13 +33,14 @@ def manejar_mensaje(cliente, mensaje):
     global clientes
     nombre = clientes[cliente]
     # Aquí se podría agregar el algoritmo de cifrado
-    mensaje_cifrado = mensaje.encode('utf-8') # Convertir el mensaje a bytes
+    mensaje_cifrado = codificar(mensaje,tabla_conversion) # Convertir el mensaje a bytes
     with clientes_lock:
         try:
             for c in clientes:
                 # Enviar el mensaje a todos los clientes excepto el remitente
                 if c != cliente:
-                    c.sendall(nombre.encode('utf-8') + b": " + mensaje_cifrado)
+                    c.sendall(codificar(nombre+": ",tabla_conversion) + mensaje_cifrado)
+
             log_message("envió mensaje", logging.INFO, nombre)
         except ConnectionResetError:
             log_message("se ha desconectado", logging.WARNING, nombre)
@@ -48,16 +53,18 @@ def manejar_cliente(cliente, direccion):
     Maneja la conexión de un nuevo cliente
     """
     global clientes
-    nombre = cliente.recv(1024).decode('utf-8')
+    nombre = decodificar(cliente.recv(1024),tabla_conversion)
     with clientes_lock:
         clientes[cliente] = nombre
-    print(f"{nombre} se ha conectado desde {direccion}")
+    log_message("se ha conectado desde "+str(direccion), logging.INFO, nombre)
+    #print(f"{nombre} se ha conectado desde "+str(direccion))
     while True:
-        mensaje = cliente.recv(1024).decode('utf-8')
+        mensaje = decodificar(cliente.recv(1024),tabla_conversion)
         if mensaje == '/quit':
             with clientes_lock:
                 del clientes[cliente]
-            print(f"{nombre} se ha desconectado")
+            log_message("se ha desconectado", logging.INFO, nombre)
+            #print(f"{nombre} se ha desconectado")
             break
         manejar_mensaje(cliente, mensaje)
 
