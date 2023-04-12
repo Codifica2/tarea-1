@@ -6,7 +6,7 @@ from datetime import datetime
 from coding import codificar,decodificar,crear_tabla_conversion
 
 #se crea la tabla de codificacion
-tabla_conversion=crear_tabla_conversion(32,256,20)
+tabla_conversion=crear_tabla_conversion(8,254,2)
 
 # Define la dirección IP y el puerto del servidor
 HOST = '127.0.0.1'

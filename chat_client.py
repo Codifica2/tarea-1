@@ -6,7 +6,7 @@ from tkinter import ttk, messagebox
 from coding import codificar,decodificar,crear_tabla_conversion
 
 #se crea la tabla de codificacion
-tabla_conversion=crear_tabla_conversion(32,256,20)
+tabla_conversion=crear_tabla_conversion(8,254,2)
 
 # Define la dirección IP y el puerto del servidor
 HOST = '127.0.0.1'
@@ -52,8 +52,6 @@ def manejar_mensaje(mensaje, emisor):
             chat.tag_config('yo', justify='right')
             chat.insert(tk.END, mensaje + '\n', 'yo')
         else:
-            print(emisor)
-            print(mensaje)
             # El otro es el emisor, así que alineo el texto a la izquierda
             chat.tag_config('otro', justify='left')
             chat.insert(tk.END, f"{emisor}: {mensaje}\n",'otro')
@@ -103,10 +101,11 @@ def manejar_entrada(event):
             chat_frame.destroy()
             ventana.destroy()
             os._exit(0)
-        else: 
-            mensaje_codificado=codificar(mensaje,tabla_conversion)
-            cliente.sendall(mensaje_codificado)
-            manejar_mensaje(mensaje, nombre)
+        else:
+            if mensaje.strip():
+                mensaje_codificado=codificar(mensaje,tabla_conversion)
+                cliente.sendall(mensaje_codificado)
+                manejar_mensaje(mensaje, nombre) 
             entrada.delete(0, tk.END)
     except ValueError as e:
         messagebox.showinfo("ADVERTENCIA","Presencia de caracter invalido")

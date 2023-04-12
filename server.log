@@ -173,3 +173,8 @@ INFO:root:22:14:21 admin envió mensaje
 INFO:root:22:14:24 admin envió mensaje
 INFO:root:22:14:24 admin ha cerrado el servidor, hasta la próxima
 WARNING:root:22:16:51 HOST ha iniciado el servidor, escuchando en 127.0.0.1:5000
+INFO:root:22:51:41 El host ha iniciado el servidor, escuchando en 127.0.0.1:5000
+INFO:root:22:51:54 admin se ha conectado desde ('127.0.0.1', 59062)
+INFO:root:22:51:58 admin envió mensaje
+INFO:root:22:52:24 admin envió mensaje
+INFO:root:22:52:24 admin ha cerrado el servidor, hasta la próxima
