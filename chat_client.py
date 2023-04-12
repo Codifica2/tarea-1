@@ -2,11 +2,11 @@ import socket
 import os
 import threading
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
 from coding import codificar,decodificar,crear_tabla_conversion
 
 #se crea la tabla de codificacion
-tabla_conversion=crear_tabla_conversion(32,127,2)
+tabla_conversion=crear_tabla_conversion(32,256,20)
 
 # Define la dirección IP y el puerto del servidor
 HOST = '127.0.0.1'
@@ -21,6 +21,7 @@ cliente.connect((HOST, PORT))
 
 # Pide al usuario que ingrese su nombre de usuario
 nombre = input("Ingresa tu nombre de usuario: ")
+
 
 # Envía el nombre de usuario al servidor
 nombre_codificado=codificar(nombre, tabla_conversion)
@@ -41,45 +42,93 @@ def on_closing():
 
 # Define la función de manejo de mensajes
 def manejar_mensaje(mensaje, emisor):
-    """
-    Agrega un mensaje a la ventana de chat
-    """
-    chat.config(state=tk.NORMAL)
-    if emisor == nombre:
-        # Yo soy el emisor, así que alineo el texto a la derecha
-        chat.tag_config('yo', justify='right')
-        chat.insert(tk.END, mensaje + '\n', 'yo')
-    else:
-        # El otro es el emisor, así que alineo el texto a la izquierda
-        chat.tag_config('otro', justify='left')
-        chat.insert(tk.END, f"{emisor}: {mensaje}\n",'otro')
-    chat.see(tk.END)
-    chat.config(state=tk.DISABLED)
+    try:
+        """
+        Agrega un mensaje a la ventana de chat
+        """
+        chat.config(state=tk.NORMAL)
+        if emisor == nombre:
+            # Yo soy el emisor, así que alineo el texto a la derecha
+            chat.tag_config('yo', justify='right')
+            chat.insert(tk.END, mensaje + '\n', 'yo')
+        else:
+            print(emisor)
+            print(mensaje)
+            # El otro es el emisor, así que alineo el texto a la izquierda
+            chat.tag_config('otro', justify='left')
+            chat.insert(tk.END, f"{emisor}: {mensaje}\n",'otro')
+            if emisor=="admin":
+                if mensaje==" /end":
+                    entrada.delete(0, tk.END)
+                    chat.destroy()
+                    entrada.destroy()
+                    chat_frame.destroy()
+                    os._exit(0)
+
+
+
+        chat.see(tk.END)
+        chat.config(state=tk.DISABLED)
+    except Exception as e:
+        messagebox.showinfo("ADVERTENCIA",e)
+
+
+
 
 # Define la función para manejar la entrada del usuario
 def manejar_entrada(event):
-    """
-    Maneja la entrada de texto del usuario y la envía al servidor
-    """
-    mensaje = entrada.get()
-    if mensaje == '/quit':
-        on_closing()
-    mensaje_codificado=codificar(mensaje,tabla_conversion)
-    cliente.sendall(mensaje_codificado)
-    manejar_mensaje(mensaje, nombre)
-    entrada.delete(0, tk.END)
+    try:
+        """
+        Maneja la entrada de texto del usuario y la envía al servidor
+        """
+        mensaje = entrada.get()
+        if mensaje == "/end":
+            if nombre=="admin":
+                mensaje_codificado=codificar(mensaje,tabla_conversion)
+                cliente.sendall(mensaje_codificado)
+                manejar_mensaje(mensaje, nombre)
+                entrada.delete(0, tk.END)
+                chat.destroy()
+                entrada.destroy()
+                chat_frame.destroy()
+                ventana.destroy()
+                os._exit(0)
+        if mensaje == '/quit':
+            mensaje_codificado=codificar(mensaje,tabla_conversion)
+            cliente.sendall(mensaje_codificado)
+            manejar_mensaje(mensaje, nombre)
+            entrada.delete(0, tk.END)
+            chat.destroy()
+            entrada.destroy()
+            chat_frame.destroy()
+            ventana.destroy()
+            os._exit(0)
+        else: 
+            mensaje_codificado=codificar(mensaje,tabla_conversion)
+            cliente.sendall(mensaje_codificado)
+            manejar_mensaje(mensaje, nombre)
+            entrada.delete(0, tk.END)
+    except ValueError as e:
+        messagebox.showinfo("ADVERTENCIA","Presencia de caracter invalido")
+    except Exception as e:
+        messagebox.showinfo("ADVERTENCIA",e)
 
 # Define la función para recibir mensajes del servidor
 def recibir_mensajes():
-    """
-    Recibe mensajes del servidor y los maneja
-    """
-    while True:
-        mensaje =decodificar(cliente.recv(1024),tabla_conversion)
-        partes = mensaje.split(':')
-        emisor = partes[0]
-        mensaje = ':'.join(partes[1:])
-        manejar_mensaje(mensaje, emisor)
+    try:
+        """
+        Recibe mensajes del servidor y los maneja
+        """
+        while True:
+            mensaje =decodificar(cliente.recv(1024),tabla_conversion)
+            partes = mensaje.split(':')
+            emisor = partes[0]
+            mensaje = ':'.join(partes[1:])
+            manejar_mensaje(mensaje, emisor)
+    except Exception as e: 
+        pass
+        
+    
 
 # Crea la ventana de chat
 ventana = tk.Tk()

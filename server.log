@@ -1,38 +1,175 @@
-INFO:root:14:44:53 usuario1 envió mensaje
-INFO:root:14:45:00 u2 envió mensaje
-INFO:root:14:45:04 usuario1 envió mensaje
-INFO:root:14:45:08 u3 envió mensaje
-INFO:root:15:39:46 u1 envió mensaje
-INFO:root:15:46:35 u1 envió mensaje
-INFO:root:15:46:40 u2 envió mensaje
-INFO:root:15:55:16 u1 envió mensaje
-INFO:root:15:55:21 u2 envió mensaje
-INFO:root:15:55:27 u1 envió mensaje
-INFO:root:16:04:01 us1 envió mensaje
-INFO:root:16:04:07 us2 envió mensaje
-INFO:root:16:10:06 use1 envió mensaje
-INFO:root:16:10:12 use2 envió mensaje
-INFO:root:16:15:04 uu1 se ha conectado desde {direccion}
-INFO:root:16:15:11 uu2 se ha conectado desde {direccion}
-INFO:root:16:15:33 uu1 envió mensaje
-INFO:root:16:16:25 uu1 envió mensaje
-INFO:root:16:16:45 uu1 se ha desconectado
-INFO:root:16:16:51 uu2 se ha desconectado
-INFO:root:16:17:56 f1 se ha conectado desde {direccion}
-INFO:root:16:18:05 f2 se ha conectado desde {direccion}
-INFO:root:16:18:10 f1 envió mensaje
-INFO:root:16:18:18 f2 envió mensaje
-INFO:root:16:20:58 k1 se ha conectado desde {direccion}
-INFO:root:16:21:04 k2 se ha conectado desde {direccion}
-INFO:root:16:22:13 k1 se ha conectado desde {direccion}
-INFO:root:16:22:20 k3 se ha conectado desde {direccion}
-INFO:root:16:22:25 k1 envió mensaje
-INFO:root:16:22:32 k3 envió mensaje
-INFO:root:16:24:18 o1 se ha conectado desde ('127.0.0.1', 50172)
-INFO:root:16:24:24 o2 se ha conectado desde ('127.0.0.1', 50179)
-INFO:root:16:24:37 o1 envió mensaje
-INFO:root:16:24:46 o2 envió mensaje
-INFO:root:16:31:20 h se ha conectado desde ('127.0.0.1', 50251)
-INFO:root:16:31:26 h envió mensaje
-INFO:root:16:37:35 h se ha desconectado
-INFO:root:16:44:44  se ha conectado desde ('127.0.0.1', 50383)
+INFO:root:19:55:56 a1 se ha conectado desde ('127.0.0.1', 54827)
+INFO:root:19:56:08 a1 envió mensaje
+INFO:root:20:04:29 a1 se ha desconectado
+INFO:root:20:04:40 a2 se ha conectado desde ('127.0.0.1', 55478)
+INFO:root:20:04:55 a2 se ha desconectado
+INFO:root:20:09:42 j4 se ha conectado desde ('127.0.0.1', 57594)
+INFO:root:20:09:45 j4 envió mensaje
+INFO:root:20:10:00 j4 se ha desconectado
+INFO:root:20:10:37 l4 se ha conectado desde ('127.0.0.1', 57921)
+INFO:root:20:10:42 l4 envió mensaje
+INFO:root:20:10:54 l4 se ha desconectado
+INFO:root:20:16:25 l4 se ha conectado desde ('127.0.0.1', 58106)
+INFO:root:20:16:29 l4 envió mensaje
+INFO:root:20:16:34 l4 envió mensaje
+INFO:root:20:17:57 l4 se ha desconectado
+INFO:root:20:18:04 k5 se ha conectado desde ('127.0.0.1', 58111)
+INFO:root:20:21:49 k5 se ha desconectado
+INFO:root:20:21:55 u6 se ha conectado desde ('127.0.0.1', 58125)
+INFO:root:20:22:02 u6 envió mensaje
+INFO:root:20:22:10 u6 envió mensaje
+INFO:root:20:24:28 u6 se ha desconectado
+INFO:root:20:25:42 u2 se ha conectado desde ('127.0.0.1', 58139)
+INFO:root:20:25:56 u2 envió mensaje
+INFO:root:20:27:02 u2 se ha desconectado
+INFO:root:20:29:48 i6 se ha conectado desde ('127.0.0.1', 58158)
+INFO:root:20:29:53 i6 se ha desconectado
+INFO:root:20:33:15 t5 se ha conectado desde ('127.0.0.1', 58176)
+INFO:root:20:33:19 t5 se ha desconectado
+INFO:root:20:38:37 r4 se ha conectado desde ('127.0.0.1', 58231)
+INFO:root:20:38:41 r4 envió mensaje
+INFO:root:20:38:43 r4 se ha desconectado
+INFO:root:20:40:33 n5 se ha conectado desde ('127.0.0.1', 58257)
+INFO:root:20:40:37 n5 envió mensaje
+INFO:root:20:40:39 n5 se ha desconectado
+INFO:root:20:42:23 t6 se ha conectado desde ('127.0.0.1', 58268)
+INFO:root:20:42:28 t6 se ha desconectado
+INFO:root:20:45:13 u7 se ha conectado desde ('127.0.0.1', 58288)
+INFO:root:20:45:16 u7 envió mensaje
+INFO:root:20:47:09 u6 se ha conectado desde ('127.0.0.1', 58295)
+INFO:root:20:48:23 tu3 se ha conectado desde ('127.0.0.1', 58300)
+INFO:root:20:48:55 r4 se ha conectado desde ('127.0.0.1', 58304)
+INFO:root:20:48:59 r4 se ha desconectado
+INFO:root:20:52:23 j6 se ha conectado desde ('127.0.0.1', 58320)
+INFO:root:20:52:27 j6 envió mensaje
+INFO:root:20:52:28 j6 se ha desconectado
+INFO:root:20:53:46 u8 se ha conectado desde ('127.0.0.1', 58325)
+INFO:root:20:53:49 u8 envió mensaje
+INFO:root:20:58:42 u4 se ha conectado desde ('127.0.0.1', 58347)
+INFO:root:20:58:50 u4 envió mensaje
+INFO:root:20:58:54 u4 se ha desconectado
+INFO:root:20:59:24 k9 se ha conectado desde ('127.0.0.1', 58353)
+INFO:root:20:59:27 k9 se ha desconectado
+INFO:root:21:00:00 u7 se ha conectado desde ('127.0.0.1', 58355)
+INFO:root:21:00:07 e6 se ha conectado desde ('127.0.0.1', 58357)
+INFO:root:21:00:11 u7 envió mensaje
+INFO:root:21:00:16 e6 envió mensaje
+INFO:root:21:00:18 e6 envió mensaje
+INFO:root:21:00:23 e6 se ha desconectado
+INFO:root:21:01:01 u7 se ha desconectado
+INFO:root:21:03:49 k7 se ha conectado desde ('127.0.0.1', 58366)
+INFO:root:21:03:52 k7 se ha desconectado
+INFO:root:21:06:03 b5 se ha conectado desde ('127.0.0.1', 58381)
+INFO:root:21:06:08 b5 envió mensaje
+INFO:root:21:06:19 thjtht8 se ha conectado desde ('127.0.0.1', 58386)
+INFO:root:21:06:31 thjtht8 envió mensaje
+INFO:root:21:06:35 b5 se ha desconectado
+INFO:root:21:08:54 k5 se ha conectado desde ('127.0.0.1', 58393)
+WARNING:root:21:09:06 k5 se ha desconectado
+INFO:root:21:09:12 b5 se ha conectado desde ('127.0.0.1', 58395)
+WARNING:root:21:09:20 b5 se ha desconectado
+INFO:root:21:10:31 k7 se ha conectado desde ('127.0.0.1', 58400)
+INFO:root:21:10:39 l8 se ha conectado desde ('127.0.0.1', 58402)
+INFO:root:21:10:44 k7 envió mensaje
+INFO:root:21:10:48 l8 envió mensaje
+INFO:root:21:10:50 k7 envió mensaje
+INFO:root:21:10:51 k7 envió mensaje
+INFO:root:21:11:43 k898 se ha conectado desde ('127.0.0.1', 58404)
+WARNING:root:21:11:49 k898 se ha desconectado
+INFO:root:21:12:40 l7 se ha conectado desde ('127.0.0.1', 58409)
+INFO:root:21:12:44 l7 se ha desconectado
+INFO:root:21:12:56 h6 se ha conectado desde ('127.0.0.1', 58411)
+INFO:root:21:12:59 h6 envió mensaje
+INFO:root:21:14:02 h5 se ha conectado desde ('127.0.0.1', 58426)
+INFO:root:21:14:10 h5 envió mensaje
+INFO:root:21:14:14 h5 se ha desconectado
+INFO:root:21:15:40 j5 se ha conectado desde ('127.0.0.1', 58430)
+INFO:root:21:19:50 uh4 se ha conectado desde ('127.0.0.1', 58453)
+INFO:root:21:19:52 uh4 envió mensaje
+INFO:root:21:20:53 kh6 se ha conectado desde ('127.0.0.1', 58459)
+INFO:root:21:21:56 sgsg se ha conectado desde ('127.0.0.1', 58469)
+INFO:root:21:22:05 uu6 se ha conectado desde ('127.0.0.1', 58471)
+INFO:root:21:30:04 fdjgh6 se ha conectado desde ('127.0.0.1', 58500)
+INFO:root:21:39:23 ujhfs se ha conectado desde ('127.0.0.1', 58549)
+INFO:root:21:39:30 admin se ha conectado desde ('127.0.0.1', 58552)
+INFO:root:21:39:35 ujhfs envió mensaje
+INFO:root:21:39:42 admin envió mensaje
+INFO:root:21:39:44 admin a cerrado el servidor, hasta la próxima
+INFO:root:21:45:23 gvseg se ha conectado desde ('127.0.0.1', 58578)
+INFO:root:21:45:28 admin se ha conectado desde ('127.0.0.1', 58580)
+INFO:root:21:45:37 admin envió mensaje
+INFO:root:21:45:44 admin ha cerrado el servidor, hasta la próxima
+INFO:root:21:45:44 admin : Error: dictionary changed size during iteration
+WARNING:root:21:49:41 gvseg se ha desconectado: se ha forzado su cierre cerrando la terminal
+INFO:root:21:49:52 sges se ha conectado desde ('127.0.0.1', 58593)
+INFO:root:21:49:58 admin se ha conectado desde ('127.0.0.1', 58595)
+INFO:root:21:50:02 admin envió mensaje
+INFO:root:21:50:05 sges envió mensaje
+INFO:root:21:50:09 admin ha cerrado el servidor, hasta la próxima
+INFO:root:21:53:20 vsevse se ha conectado desde ('127.0.0.1', 58610)
+INFO:root:21:53:28 drrdn se ha conectado desde ('127.0.0.1', 58613)
+INFO:root:21:53:35 vsevse envió mensaje
+INFO:root:21:53:38 drrdn envió mensaje
+INFO:root:21:53:40 drrdn se ha desconectado
+INFO:root:21:53:47 vsevse envió mensaje
+INFO:root:21:53:48 vsevse se ha desconectado
+INFO:root:21:53:58 admin se ha conectado desde ('127.0.0.1', 58621)
+INFO:root:21:54:04 agfag se ha conectado desde ('127.0.0.1', 58623)
+INFO:root:21:54:07 agfag envió mensaje
+INFO:root:21:54:12 admin ha cerrado el servidor, hasta la próxima
+INFO:root:21:55:03 sgseg se ha conectado desde ('127.0.0.1', 58630)
+INFO:root:21:55:13 admin se ha conectado desde ('127.0.0.1', 58632)
+INFO:root:21:55:16 admin envió mensaje
+INFO:root:21:55:21 admin ha cerrado el servidor, hasta la próxima
+INFO:root:21:56:08 admin se ha conectado desde ('127.0.0.1', 58640)
+INFO:root:21:56:11 sfesf se ha conectado desde ('127.0.0.1', 58641)
+INFO:root:21:56:14 admin envió mensaje
+INFO:root:21:56:21 sfesf envió mensaje
+INFO:root:21:56:26 admin ha cerrado el servidor, hasta la próxima
+INFO:root:21:57:44 admin se ha conectado desde ('127.0.0.1', 58649)
+INFO:root:21:57:49 sefesf se ha conectado desde ('127.0.0.1', 58651)
+INFO:root:21:57:53 admin envió mensaje
+INFO:root:21:58:01 admin envió mensaje
+INFO:root:21:58:01 admin ha cerrado el servidor, hasta la próxima
+INFO:root:21:59:28 fse se ha conectado desde ('127.0.0.1', 58662)
+INFO:root:21:59:34 admin se ha conectado desde ('127.0.0.1', 58664)
+INFO:root:21:59:39 admin envió mensaje
+INFO:root:21:59:39 admin ha cerrado el servidor, hasta la próxima
+INFO:root:22:00:30 saseg se ha conectado desde ('127.0.0.1', 58672)
+INFO:root:22:00:36 admin se ha conectado desde ('127.0.0.1', 58674)
+INFO:root:22:00:39 admin envió mensaje
+INFO:root:22:00:43 admin envió mensaje
+INFO:root:22:00:43 admin ha cerrado el servidor, hasta la próxima
+INFO:root:22:06:15 sjdhs4 se ha conectado desde ('127.0.0.1', 58710)
+INFO:root:22:06:22 admin se ha conectado desde ('127.0.0.1', 58712)
+INFO:root:22:06:26 sjdhs4 envió mensaje
+INFO:root:22:06:29 admin envió mensaje
+INFO:root:22:06:31 admin envió mensaje
+INFO:root:22:06:31 admin ha cerrado el servidor, hasta la próxima
+INFO:root:22:10:16 sefsef se ha conectado desde ('127.0.0.1', 58724)
+INFO:root:22:10:25 admin se ha conectado desde ('127.0.0.1', 58726)
+INFO:root:22:10:29 sefsef envió mensaje
+INFO:root:22:10:32 admin envió mensaje
+INFO:root:22:10:34 admin envió mensaje
+INFO:root:22:10:34 admin ha cerrado el servidor, hasta la próxima
+INFO:root:22:11:27 SEFSEF se ha conectado desde ('127.0.0.1', 58733)
+INFO:root:22:11:36 admin se ha conectado desde ('127.0.0.1', 58735)
+INFO:root:22:11:40 admin envió mensaje
+INFO:root:22:11:45 admin envió mensaje
+INFO:root:22:11:45 admin ha cerrado el servidor, hasta la próxima
+INFO:root:22:12:16 segs se ha conectado desde ('127.0.0.1', 58739)
+INFO:root:22:12:25 admin se ha conectado desde ('127.0.0.1', 58741)
+INFO:root:22:12:28 admin envió mensaje
+INFO:root:22:12:33 admin envió mensaje
+INFO:root:22:12:33 admin ha cerrado el servidor, hasta la próxima
+INFO:root:22:13:25 fhsef se ha conectado desde ('127.0.0.1', 58749)
+INFO:root:22:13:30 admin se ha conectado desde ('127.0.0.1', 58751)
+INFO:root:22:13:34 admin envió mensaje
+INFO:root:22:13:38 admin envió mensaje
+INFO:root:22:13:38 admin ha cerrado el servidor, hasta la próxima
+INFO:root:22:14:06 afwaf se ha conectado desde ('127.0.0.1', 58764)
+INFO:root:22:14:12 admin se ha conectado desde ('127.0.0.1', 58766)
+INFO:root:22:14:21 admin envió mensaje
+INFO:root:22:14:24 admin envió mensaje
+INFO:root:22:14:24 admin ha cerrado el servidor, hasta la próxima
+WARNING:root:22:16:51 HOST ha iniciado el servidor, escuchando en 127.0.0.1:5000

@@ -1,11 +1,12 @@
 import socket
 import threading
 import logging
+import os
 from datetime import datetime
 from coding import codificar,decodificar,crear_tabla_conversion
 
 #se crea la tabla de codificacion
-tabla_conversion=crear_tabla_conversion(32,127,2)
+tabla_conversion=crear_tabla_conversion(32,256,20)
 
 # Define la dirección IP y el puerto del servidor
 HOST = '127.0.0.1'
@@ -20,9 +21,6 @@ def log_message(msg, level, nombre):
     now = datetime.now().strftime("%H:%M:%S")
     logging.basicConfig(filename='server.log', level=logging.INFO, filemode='a')
     logging.log(level, f"{now} {nombre} {msg}")
-
-    # Muestra en consola el log
-    print(f"{now} {nombre} {msg}")
 
 # Define la función de manejo de mensajes
 def manejar_mensaje(cliente, mensaje):
@@ -45,28 +43,39 @@ def manejar_mensaje(cliente, mensaje):
         except ConnectionResetError:
             log_message("se ha desconectado", logging.WARNING, nombre)
             del clientes[cliente]
+        except Exception as e:
+            log_message("Error: "+str(e), logging.WARNING, nombre)
         
 
 # Define la función para manejar la conexión de un nuevo cliente
-def manejar_cliente(cliente, direccion):
-    """
-    Maneja la conexión de un nuevo cliente
-    """
-    global clientes
+def manejar_cliente(cliente, direccion):  
     nombre = decodificar(cliente.recv(1024),tabla_conversion)
-    with clientes_lock:
-        clientes[cliente] = nombre
-    log_message("se ha conectado desde "+str(direccion), logging.INFO, nombre)
-    #print(f"{nombre} se ha conectado desde "+str(direccion))
-    while True:
-        mensaje = decodificar(cliente.recv(1024),tabla_conversion)
-        if mensaje == '/quit':
-            with clientes_lock:
-                del clientes[cliente]
-            log_message("se ha desconectado", logging.INFO, nombre)
-            #print(f"{nombre} se ha desconectado")
-            break
-        manejar_mensaje(cliente, mensaje)
+    try:
+        """
+        aneja la conexión de un nuevo cliente
+        """
+        global clientes
+        with clientes_lock:
+            clientes[cliente] = nombre
+        log_message("se ha conectado desde "+str(direccion), logging.INFO, nombre)
+        while True:
+            mensaje = decodificar(cliente.recv(1024),tabla_conversion)
+            if nombre == "admin":
+                if mensaje=="/end":
+                    manejar_mensaje(cliente, mensaje)
+                    log_message("ha cerrado el servidor, hasta la próxima",logging.INFO,nombre)
+                    os._exit(0)
+            if mensaje == '/quit':
+                with clientes_lock:
+                    del clientes[cliente]
+                log_message("se ha desconectado", logging.INFO, nombre)
+                break
+            manejar_mensaje(cliente, mensaje)
+    except WindowsError:
+        log_message("se ha desconectado: se ha forzado su cierre cerrando la terminal",logging.WARNING,nombre)
+    except Exception as e:
+        log_message(": Error: "+str(e),logging.INFO,nombre)
+
 
 # Define la función principal del servidor
 def main():
@@ -79,7 +88,8 @@ def main():
         s.bind((HOST, PORT))
         # Escucha conexiones entrantes
         s.listen()
-        print(f"Servidor escuchando en {HOST}:{PORT}")
+        log_message("ha iniciado el servidor, escuchando en "+str(HOST)+":"+str(PORT),logging.INFO,"El host")
+        #print(f"Servidor escuchando en {HOST}:{PORT}")
         while True:
             # Espera una conexión entrante
             cliente, direccion = s.accept()
